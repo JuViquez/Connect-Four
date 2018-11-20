@@ -1,4 +1,4 @@
-class GameAgent(object):
+class GameAgent:
     
     def play(game):
         pass
