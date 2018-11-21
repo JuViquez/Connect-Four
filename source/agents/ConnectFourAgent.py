@@ -4,8 +4,9 @@ from source.games.ConnectFourChecker import ConnectFourChecker
 
 class ConnectFourAgent(GameAgent):
     
-    def __init__(self, disc):
+    def __init__(self, disc, rand_provider):
         self._disc = disc
+        self.rand_provider = rand_provider
     
     def play(self, board, columns):
         enemy = "Y"
