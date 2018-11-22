@@ -13,7 +13,7 @@ class RandomnessProvider:
         rand_num = np.random.uniform(a, b)
         return rand_num
     
-    def prob_choice(items, probs):
+    def prob_choice(self, items, probs):
         rand_item = np.random.choice(items, 1, replace=True, p=probs)[0]
         return rand_item
 
