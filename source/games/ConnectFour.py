@@ -2,6 +2,7 @@ import numpy as np
 from source.agents.ConnectFourAgent import ConnectFourAgent
 from source.agents.ConnectFourHumanAgent import ConnectFourHumanAgent
 from source.games.ConnectFourChecker import ConnectFourChecker
+from source.utilities.RandomnessProvider import RandomnessProvider
 
 class ConnectFour():
     def __init__(self):
@@ -35,7 +36,7 @@ class ConnectFour():
             return False
 
     def turn_manager(self):
-        self.red = ConnectFourAgent("R")
+        self.red = ConnectFourAgent("R",RandomnessProvider())
         self.yellow = ConnectFourHumanAgent("Y")
         checker = ConnectFourChecker()
         game_over = False
