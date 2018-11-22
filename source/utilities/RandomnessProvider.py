@@ -27,3 +27,9 @@ class RandomnessProvider:
         probs = np.insert(probs, 0, remaining_prob)
         return probs
     
+    def scale_probs(probs):
+        total_prob = sum(probs)
+        size_probs = len(probs)
+        for i in range(size_probs):
+            probs[i] = probs[i] / total_prob
+        return probs
