@@ -1,7 +1,11 @@
-class Chromosome:
+from abc import ABCMeta, abstractmethod
+
+class Chromosome(metaclass=ABCMeta):
     
-    def mutate():
+    @abstractmethod
+    def mutate(self):
         pass
     
-    def cross(chromosome):
+    @abstractmethod
+    def cross(self, chromosome):
         pass
