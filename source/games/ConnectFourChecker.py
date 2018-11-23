@@ -15,7 +15,7 @@ class ConnectFourChecker:
     def simulate_play(self, board, column):
         for i in range(1,7):
             if board[i*-1][column] is None:
-                return i*-1
+                return 6-i
 
     def check_win_play(self, board, columns, value):
         for i in columns:
