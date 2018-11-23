@@ -56,4 +56,3 @@ class ConnectFourSearcher:
                 combination = np.diagonal(mini_board[::-1], 0)
                 combinations.insert(0, combination)
         return combinations
-    
