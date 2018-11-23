@@ -5,10 +5,11 @@ from source.strategies.ConnectFourStrategy import ConnectFourStrategy
 
 class ConnectFourAgent(GameAgent):
     
-    def __init__(self, disc, rand_provider):
+    def __init__(self, disc, rand_provider, strategy, strategies_probs):
         self._disc = disc
         self.rand_provider = rand_provider
-        self.strategy = ConnectFourStrategy (rand_provider)
+        self.strategy = strategy
+        self.strategies_probs = strategies_probs
     
     def play(self, board, columns):
         enemy = "Y"
