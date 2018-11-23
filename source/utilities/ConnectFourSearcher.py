@@ -56,18 +56,3 @@ class ConnectFourSearcher:
                 combination = np.diagonal(mini_board[::-1], 0)
                 combinations.insert(0, combination)
         return combinations
-
-
-cfs = ConnectFourSearcher()
-arr = np.array(
-            [[None, None, None, None, None, None, None],
-            [None, None, None, None, None, None, None],
-            [None, None, None, None, None, None, None],
-            [None, None, "R", "Y", None, "Y", None],
-            [None, None, "R", "Y", None, "R", None],
-            ["R", "Y", None, "R", "r", None, "R"]])
-h = cfs.search_horizontal(arr, 5, 4)
-print(h)
-cfs.search_spaces(arr, h, "R")
-#print(cfs.search_negative_diagonal(arr, 5, 3))
-#print(cfs.search_positive_diagonal(arr, 5, 3))

@@ -1,6 +1,6 @@
 from random import randint
 from source.agents.GameAgent import GameAgent
-from source.games.ConnectFourChecker import ConnectFourChecker
+from source.utilities.ConnectFourChecker import ConnectFourChecker
 
 class ConnectFourHumanAgent(GameAgent):
     

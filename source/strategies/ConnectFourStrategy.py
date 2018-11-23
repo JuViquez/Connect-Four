@@ -1,5 +1,5 @@
 import numpy as np
-from source.games.ConnectFourChecker import ConnectFourChecker
+from source.utilities.ConnectFourChecker import ConnectFourChecker
 from source.utilities.RandomnessProvider import RandomnessProvider
 from source.utilities.ConnectFourScore import ConnectFourScore
 from source.utilities.ConnectFourSearcher import ConnectFourSearcher
@@ -21,24 +21,26 @@ class ConnectFourStrategy:
         searcher = ConnectFourSearcher()
         row = 0
         max_score = 0
+        best_column = -1
         for i in columns:
             row = checker.simulate_play(board, i)
             board[row][i] = subdisc
-            current_score = score.search_spaces(board, searcher.search_horizontal( board, row, i), disc)
+            current_score = score.search_spaces(board, searcher.search_horizontal(board, row, i), disc)
             if current_score > max_score:
                 max_score = current_score
-            current_score = score.search_spaces(board, searcher.search_negative_diagonal( board, row, i), disc)
+                best_column = i
+            current_score = score.search_spaces(board, searcher.search_negative_diagonal(board, row, i), disc)
             if current_score > max_score:
                 max_score = current_score
-            current_score = score.search_spaces(board, searcher.search_positive_diagonal( board, row, i), disc)
+                best_column = i
+            current_score = score.search_spaces(board, searcher.search_positive_diagonal(board, row, i), disc)
             if current_score > max_score:
                 max_score = current_score
+                best_column = i
             board[row][i] = None
             if max_score == 2:
                 return i
-        
-        
-        
+        return best_column
 
     def center(self, board, columns):
         centers = []

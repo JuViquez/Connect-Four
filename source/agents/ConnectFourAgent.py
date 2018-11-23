@@ -1,6 +1,6 @@
 from random import randint
 from source.agents.GameAgent import GameAgent
-from source.games.ConnectFourChecker import ConnectFourChecker
+from source.utilities.ConnectFourChecker import ConnectFourChecker
 from source.strategies.ConnectFourStrategy import ConnectFourStrategy
 
 class ConnectFourAgent(GameAgent):
@@ -25,5 +25,5 @@ class ConnectFourAgent(GameAgent):
             if x is not None: #Chequea si se puede bloquear
                 return x
             #return columns[randint(0, column_length-1)] #aquí es donde se llamarían a las estrategias
-            return self.strategy.center(board, columns)
+            return self.strategy.spaces(board, columns, self.disc)
         return None
