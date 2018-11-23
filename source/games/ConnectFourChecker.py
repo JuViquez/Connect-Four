@@ -1,6 +1,9 @@
 import numpy as np
 
-class ConnectFourChecker():
+class ConnectFourChecker:
+    
+    def  __init__(self):
+        pass
     
     def possible_plays(self, board):
         possible = []
@@ -42,3 +45,5 @@ class ConnectFourChecker():
                 if board[r][c] == value and board[r-1][c+1] == value and board[r-2][c+2] == value and board[r-3][c+3] == value:
                     return True
         return False
+    
+    
