@@ -46,35 +46,30 @@ class ConnectFourStrategy:
         return best_column
     
     def spaces(self, board, columns, disc):
-        subdisc = "r"
-        if disc == "Y":
-            subdisc = "y"
-        checker = ConnectFourChecker()
-        score = ConnectFourScore()
-        searcher = ConnectFourSearcher()
+        draw = []
         row = 0
         max_score = 0
-        best_column = -1
+        #best_column = -1 
         for i in columns:
-            row = checker.simulate_play(board, i)
-            board[row][i] = subdisc
-            current_score = score.search_spaces(board, searcher.search_horizontal(board, row, i), disc)
+            row = self.checker.simulate_play(board, i)
+            board[row][i] = "C"
+            horizontal = self.searcher.search_horizontal(board, row, i)
+            negative_diagonal = self.searcher.search_negative_diagonal(board, row, i)
+            positive_diagonal = self.searcher.search_positive_diagonal(board, row, i)
+            current_score = self.score.search_spaces( horizontal, disc) + self.score.search_spaces( negative_diagonal, disc) + self.score.search_spaces( positive_diagonal, disc)
             if current_score > max_score:
+                draw = []
+                draw.append(i)
                 max_score = current_score
-                best_column = i
-            current_score = score.search_spaces(board, searcher.search_negative_diagonal(board, row, i), disc)
-            if current_score > max_score:
-                max_score = current_score
-                best_column = i
-            current_score = score.search_spaces(board, searcher.search_positive_diagonal(board, row, i), disc)
-            if current_score > max_score:
-                max_score = current_score
-                best_column = i
+            elif current_score == max_score:
+                draw.append(i)
             board[row][i] = None
-            if max_score == 2:
-                return i
-        return best_column
-
+        if len(draw) != 1:
+            print(draw)
+            return self.rand_provider.prob_choice(draw, None) 
+        else:
+            return draw[0]
+        
     def center(self, board, columns):
         centers = []
         for i in columns:
