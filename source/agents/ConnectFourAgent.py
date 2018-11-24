@@ -25,5 +25,5 @@ class ConnectFourAgent(GameAgent):
             if x is not None: #Chequea si se puede bloquear
                 return x
             #return columns[randint(0, column_length-1)] #aquí es donde se llamarían a las estrategias
-            return self.strategy.spaces(board, columns, self.disc)
+            return self.strategy.sequence(board, columns, self.disc)
         return None
