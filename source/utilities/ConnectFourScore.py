@@ -60,7 +60,6 @@ class ConnectFourScore:
         for cb in combinations:
             cb_score = 0
             for slot in cb:
-                print(slot)
                 if slot == value:
                     cb_score += 1
                 elif slot != None:

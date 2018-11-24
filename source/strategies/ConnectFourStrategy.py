@@ -49,7 +49,6 @@ class ConnectFourStrategy:
         draw = []
         row = 0
         max_score = 0
-        #best_column = -1 
         for i in columns:
             row = self.checker.simulate_play(board, i)
             board[row][i] = "C"
@@ -66,11 +65,7 @@ class ConnectFourStrategy:
             elif current_score == max_score:
                 draw.append(i)
             board[row][i] = None
-        if len(draw) != 1:
-            print(draw)
-            return self.rand_provider.prob_choice(draw, None) 
-        else:
-            return draw[0]
+        return self.rand_provider.prob_choice(draw, None) 
         
     def center(self, board, columns, disc):
         centers = []
@@ -116,17 +111,95 @@ class ConnectFourStrategy:
         best_column = self.rand_provider.prob_choice(best_columns, None)
         return best_column
     
-    def odd_row(self, board, columns):
-        pass
+    def odd_row(self, board, columns, disc):
+        odds = []
+        for i in columns:
+            row = self.checker.simulate_play(board, i)
+            if row%2 == 1:
+                odds.append(i)
+        max_score = 0
+        best_columns = []
+        for odd in odds:
+            row = self.checker.simulate_play(board, odd)
+            current_score = self.__calculate_score(board,row,odd,disc)
+            if max_score < current_score:
+                max_score = current_score
+                best_columns = []
+                best_columns.append(odd)
+            elif max_score == current_score:
+                best_columns.append(odd)
+            board[row][odd] = None
+        if not odds:
+            best_columns = columns          
+        best_column = self.rand_provider.prob_choice(best_columns, None)
+        return best_column
     
-    def even_row(self, board, columns):
-        pass
+    def even_row(self, board, columns, disc):
+        evens = []
+        for i in columns:
+            row = self.checker.simulate_play(board, i)
+            if row%2 == 0:
+                evens.append(i)
+        max_score = 0
+        best_columns = []
+        for even in evens:
+            row = self.checker.simulate_play(board, even)
+            current_score = self.__calculate_score(board,row,even,disc)
+            if max_score < current_score:
+                max_score = current_score
+                best_columns = []
+                best_columns.append(even)
+            elif max_score == current_score:
+                best_columns.append(even)
+            board[row][even] = None
+        if not evens:
+            best_columns = columns          
+        best_column = self.rand_provider.prob_choice(best_columns, None)
+        return best_column
     
-    def odd_column(self, board, columns):
-        pass
+    def odd_column(self, board, columns, disc):
+        odds = []
+        for i in columns:
+            if i%2 == 1:
+                odds.append(i)
+        max_score = 0
+        best_columns = []
+        for odd in odds:
+            row = self.checker.simulate_play(board, odd)
+            current_score = self.__calculate_score(board,row,odd,disc)
+            if max_score < current_score:
+                max_score = current_score
+                best_columns = []
+                best_columns.append(odd)
+            elif max_score == current_score:
+                best_columns.append(odd)
+            board[row][odd] = None
+        if not odds:
+            best_columns = columns          
+        best_column = self.rand_provider.prob_choice(best_columns, None)
+        return best_column
     
-    def even_column(self, board, columns):
-        pass
+    def even_column(self, board, columns, disc):
+        evens = []
+        for i in columns:
+            if i%2 == 0:
+                evens.append(i)
+        max_score = 0
+        best_columns = []
+        for even in evens:
+            row = self.checker.simulate_play(board, even)
+            current_score = self.__calculate_score(board,row,even,disc)
+            if max_score < current_score:
+                max_score = current_score
+                best_columns = []
+                best_columns.append(even)
+            elif max_score == current_score:
+                best_columns.append(even)
+            board[row][even] = None
+        if not evens:
+            best_columns = columns          
+        best_column = self.rand_provider.prob_choice(best_columns, None)
+        return best_column
     
     def __calculate_score(self, board, row, column, disc):
         horizontal = self.searcher.search_horizontal(board, row, column)

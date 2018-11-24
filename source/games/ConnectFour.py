@@ -44,7 +44,7 @@ class ConnectFour():
         score = ConnectFourScore()
         searcher = ConnectFourSearcher()
         strategy = ConnectFourStrategy(random, checker, score, searcher)
-        self.red = ConnectFourAgent("R",random, strategy,[])
+        self.red = ConnectFourAgent("R",random, strategy,[0.3,0.2,0.05,0.05,0.1,0.1,0.1,0.1])
         self.yellow = ConnectFourHumanAgent("Y")
         checker = ConnectFourChecker()
         game_over = False
@@ -64,13 +64,14 @@ class ConnectFour():
             self.print_board()
 
     def print_board(self):
+        print(" 0 1 2 3 4 5 6 7")
         for row in self.board:
-            for column in row:
-                if column is None:
+            for column in range(len(row)):
+                if row[column] is None:
                     print("| ", end='')
                 else:
-                    print("|" + column, end='')
-            print("")
+                    print("|" + row[column], end='')
+            print("|")
 
 
 
