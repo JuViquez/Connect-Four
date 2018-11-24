@@ -6,11 +6,44 @@ from source.utilities.ConnectFourSearcher import ConnectFourSearcher
 
 class ConnectFourStrategy:
     
-    def __init__(self, rand_provider):
+    def __init__(self, rand_provider, checker, score, searcher):
         self.rand_provider = rand_provider
+        self.checker = checker
+        self.searcher = searcher
+        self.score = score
     
-    def secuence(self, board, columns):
-        pass
+    def secuence(self, board, columns, disc):
+        subdisc = "C"
+        row = 0
+        max_score = 0
+        best_columns = []
+        for column in columns:
+            row = self.checker.simulate_play(board, column)
+            board[row][columns] = subdisc
+            
+            combinations = self.searcher.search_horizontal(board, row, column)
+            current_score = self.score.score_sequence(combinations, disc)
+            
+            combinations = self.searcher.search_vertical(board, row, column)
+            current_score += self.score.score_sequence(combinations, disc)
+            
+            combinations = self.searcher.search_negative_diagonal(board, row, column)
+            current_score += self.score.score_sequence(combinations, disc)
+            
+            combinations = self.searcher.search_positive_diagonal(board, row, column)
+            current_score += self.score.score_sequence(combinations, disc)
+            
+            board[row][column] = None
+            
+            if max_score < current_score:
+                max_score = current_score
+                best_columns = []
+                best_columns.append(column)
+            elif max_score == current_score:
+                best_columns.append(column)       
+        
+        best_column = self.rand_provider.prob_choice(best_columns, None)
+        return best_column
     
     def spaces(self, board, columns, disc):
         subdisc = "r"

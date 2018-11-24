@@ -1,6 +1,6 @@
 class ConnectFourScore:
 
-    def search_spaces(self, board, combinations, value):
+    def search_spaces(self, combinations, value):
         max_score = 0
         subvalue = "r"
         if value == "Y":
@@ -41,3 +41,43 @@ class ConnectFourScore:
                 print(space_l)
                 """
         return max_score
+    
+    def score_sequence(combinations, value):
+        score = 0
+        for cb in combinations:
+            cb_score = 0
+            cb_len = len(cb)
+            for i in range(cb_len):
+                if cb[i] == value:
+                    cb_score += 1
+                elif cb[i] == "C":
+                    if i == 0:
+                        if cb[i+1] != value:
+                            cb_score = 0
+                            break
+                    elif i == cb_len-1:
+                        if cb[i-1] != value:
+                            cb_score = 0
+                            break
+                    elif cb[i+1] != value and cb[i-1] != value:
+                        cb_score = 0
+                        break
+                elif cb[i] != None:
+                    cb_score = 0
+                    break
+            score += cb_score
+        return score
+    
+    def score_combinations(self, combinations, value):
+        score = 0
+        for cb in combinations:
+            cb_score = 0
+            for slot in cb:
+                print(slot)
+                if slot == value:
+                    cb_score += 1
+                elif slot != None:
+                    cb_score = 0
+                    break
+            score += cb_score
+        return score
