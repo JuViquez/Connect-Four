@@ -4,6 +4,8 @@ from source.agents.ConnectFourHumanAgent import ConnectFourHumanAgent
 from source.utilities.ConnectFourChecker import ConnectFourChecker
 from source.utilities.RandomnessProvider import RandomnessProvider
 from source.strategies.ConnectFourStrategy import ConnectFourStrategy
+from source.utilities.ConnectFourScore import ConnectFourScore
+from source.utilities.ConnectFourSearcher import ConnectFourSearcher
 
 class ConnectFour():
     def __init__(self):
@@ -37,7 +39,12 @@ class ConnectFour():
             return False
 
     def turn_manager(self):
-        self.red = ConnectFourAgent("R",RandomnessProvider(),ConnectFourStrategy(RandomnessProvider()),[])
+        random = RandomnessProvider()
+        checker = ConnectFourChecker()
+        score = ConnectFourScore()
+        searcher = ConnectFourSearcher()
+        strategy = ConnectFourStrategy(random, checker, score, searcher)
+        self.red = ConnectFourAgent("R",random, strategy,[])
         self.yellow = ConnectFourHumanAgent("Y")
         checker = ConnectFourChecker()
         game_over = False
@@ -54,7 +61,16 @@ class ConnectFour():
                 else:
                     self.turn = "R"
                 print("---------------------------------------------------------------")
-                print(self.board)
+            self.print_board()
+
+    def print_board(self):
+        for row in self.board:
+            for column in row:
+                if column is None:
+                    print("| ", end='')
+                else:
+                    print("|" + column, end='')
+            print("")
 
 
 
