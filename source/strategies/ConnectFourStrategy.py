@@ -56,9 +56,9 @@ class ConnectFourStrategy:
             horizontal = self.searcher.search_horizontal(board, row, i)
             negative_diagonal = self.searcher.search_negative_diagonal(board, row, i)
             positive_diagonal = self.searcher.search_positive_diagonal(board, row, i)
-            current_score = self.score.search_spaces( horizontal, disc) 
+            current_score = (self.score.search_spaces( horizontal, disc) 
                             + self.score.search_spaces( negative_diagonal, disc) 
-                            + self.score.search_spaces( positive_diagonal, disc)
+                            + self.score.search_spaces( positive_diagonal, disc))
             if current_score > max_score:
                 draw = []
                 draw.append(i)
@@ -72,7 +72,7 @@ class ConnectFourStrategy:
         else:
             return draw[0]
         
-    def center(self, board, columns):
+    def center(self, board, columns, disc):
         centers = []
         for i in columns:
             if i > 1 and i < 5:
@@ -80,21 +80,21 @@ class ConnectFourStrategy:
         max_score = 0
         best_columns = []
         for center in centers:
-            row = self.checker.simulate_play(board, i)
-            current_score = self.__calculate_score(board,row,center)
+            row = self.checker.simulate_play(board, center)
+            current_score = self.__calculate_score(board,row,center,disc)
             if max_score < current_score:
                 max_score = current_score
                 best_columns = []
                 best_columns.append(center)
-            elif max_score == current_state:
+            elif max_score == current_score:
                 best_columns.append(center)
-            board[row][column] = None
+            board[row][center] = None
         if not centers:
             best_columns = columns
         best_column = self.rand_provider.prob_choice(best_columns, None)
         return best_column
     
-    def end(self, board, columns):
+    def end(self, board, columns, disc):
         ends = []
         for i in columns:
             if i < 2 or i > 4:
@@ -102,17 +102,17 @@ class ConnectFourStrategy:
         max_score = 0
         best_columns = []
         for end in ends:
-            row = self.checker.simulate_play(board, i)
-            current_score = self.__calculate_score(board,row,end)
+            row = self.checker.simulate_play(board, end)
+            current_score = self.__calculate_score(board,row,end,disc)
             if max_score < current_score:
                 max_score = current_score
                 best_columns = []
                 best_columns.append(end)
-            elif max_score == current_state:
+            elif max_score == current_score:
                 best_columns.append(end)
-            board[row][column] = None
+            board[row][end] = None
         if not ends:
-            best_columns = columns         
+            best_columns = columns          
         best_column = self.rand_provider.prob_choice(best_columns, None)
         return best_column
     
@@ -128,13 +128,14 @@ class ConnectFourStrategy:
     def even_column(self, board, columns):
         pass
     
-    def __calculate_score(self, board, row, column):
-        horizontal = self.searcher.search_horizontal(board, row, i)
-        vertical = self.searcher.search_vertical(board, row, i)
-        negative_diagonal = self.searcher.search_negative_diagonal(board, row, i)
-        positive_diagonal = self.searcher.search_positive_diagonal(board, row, i)
+    def __calculate_score(self, board, row, column, disc):
+        horizontal = self.searcher.search_horizontal(board, row, column)
+        vertical = self.searcher.search_vertical(board, row, column)
+        negative_diagonal = self.searcher.search_negative_diagonal(board, row, column)
+        positive_diagonal = self.searcher.search_positive_diagonal(board, row, column)
         
-        score = self.score.score_combinations( horizontal, disc) 
-                            + self.score.score_combinations( negative_diagonal, disc) 
-                            + self.score.score_combinations( positive_diagonal, disc)
+        score = (self.score.score_combinations( horizontal, disc) 
+                  + self.score.score_combinations( negative_diagonal, disc) 
+                  + self.score.score_combinations( positive_diagonal, disc)
+                  + self.score.score_combinations( vertical, disc))
         return score
