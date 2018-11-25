@@ -11,7 +11,7 @@ class ConnectFourSearcher:
         combinations = []
         for i in range(self.group_size):
             lower_index = disc_column - i
-            upper_index = lower_index + 4
+            upper_index = lower_index + self.group_size
             if lower_index >= 0 and upper_index <= self.row_size:
                 combination = board[disc_row][lower_index : upper_index]
                 combinations.insert(0, combination)

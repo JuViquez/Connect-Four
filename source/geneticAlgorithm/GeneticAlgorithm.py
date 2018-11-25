@@ -29,7 +29,7 @@ class GeneticAlgorithm:
                     self.population[agent1][0].disc = first_disc
                     self.population[agent2][0].disc = second_disc
                     match =  ConnectFour(self.population[agent1][0], self.population[agent2][0])
-                    result = match.turn_manager()
+                    result = match.turn_manager(False)
                     if result == first_disc:
                         self.population[agent1][1] += 2
                     elif result == second_disc:
@@ -39,7 +39,7 @@ class GeneticAlgorithm:
                         self.population[agent2][1] += 1
 
     def cross_controller(self):
-        probabilities = self.randomness_provider.scale_probs([i[1] for i in ga.population])
+        probabilities = self.randomness_provider.scale_probs([i[1] for i in self.population])
         index_list = list(range(self.population_size))
         children = []
         for i in range(self.children_size):
@@ -63,7 +63,6 @@ class GeneticAlgorithm:
     def genetic_controller(self, generations):
         self.population_generator()
         for i in range(generations):
-            print(i)
             self.simulate_matches("R","Y")
             self.simulate_matches("Y","R")
             self.population.sort(key=lambda x: x[1])
@@ -73,7 +72,3 @@ class GeneticAlgorithm:
                 self.replace(children)
         return self.population[-1][0].strategies_probs
 
-
-ga = GeneticAlgorithm(RandomnessProvider(), 60, 15)
-resultado = ga.genetic_controller(20)
-print(resultado)

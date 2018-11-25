@@ -39,28 +39,21 @@ class ConnectFour():
         else:
             return False
 
-    def turn_manager(self):
-        checker = ConnectFourChecker()
-        """
-        random = RandomnessProvider()
-        score = ConnectFourScore()
-        searcher = ConnectFourSearcher()
-        strategy = ConnectFourStrategy(random, checker, score, searcher)
-        """
-        #self.red = ConnectFourAgent("R",random, strategy,[0.3,0.2,0.05,0.05,0.1,0.1,0.1,0.1])
-        #self.yellow = ConnectFourHumanAgent("Y")
+    def turn_manager(self, should_print):
         checker = ConnectFourChecker()
         winner = ""
         game_over = False
         while(not game_over):
             if not self.play_turn(checker): #tablero lleno, empate
-                #print("Draw")
-                #self.print_board()
+                if should_print:
+                    print("Draw")
+                    self.print_board()
                 game_over = True
                 winner = "D"
             elif checker.check_win(self.board, self.turn): #hay ganador
-                #print("Winner winner chicken dinner " + self.turn)
-                #self.print_board()
+                if should_print:
+                    print("Winner winner chicken dinner " + self.turn)
+                    self.print_board()
                 game_over = True
                 winner = self.turn
             else: #cambio de turno
@@ -68,8 +61,9 @@ class ConnectFour():
                     self.turn = "Y"
                 else:
                     self.turn = "R"
-                #print("---------------------------------------------------------------")
-                #self.print_board()
+                if should_print:
+                    print("---------------------------------------------------------------")
+                    self.print_board()
         return winner
 
     def print_board(self):
@@ -83,7 +77,3 @@ class ConnectFour():
                     print("|" + self.board[row][column], end='')
             print("|")
 
-
-
-#cf = ConnectFour()
-#cf.turn_manager()

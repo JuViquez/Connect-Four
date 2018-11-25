@@ -1,6 +1,4 @@
-from random import randint
 from source.agents.GameAgent import GameAgent
-from source.utilities.ConnectFourChecker import ConnectFourChecker
 
 class ConnectFourHumanAgent(GameAgent):
     
@@ -19,4 +17,5 @@ class ConnectFourHumanAgent(GameAgent):
                     print("No se puede jugar esa columna, elija otra")
             except ValueError:
                 print("Introducir valores numericos!!!")
-            
+        
+     

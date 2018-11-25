@@ -1,0 +1,6 @@
+[
+  "test/test_ConnectFourSearcher.py::test_search_horizontal",
+  "test/test_ConnectFourSearcher.py::test_search_vertical",
+  "test/test_ConnectFourSearcher.py::test_search_negative_diagonal",
+  "test/test_ConnectFourSearcher.py::test_search_positive_diagonal"
+]

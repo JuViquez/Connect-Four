@@ -6,7 +6,7 @@ from source.strategies.ConnectFourStrategy import ConnectFourStrategy
 class ConnectFourAgent(GameAgent):
     
     def __init__(self, disc, rand_provider, strategy, strategies_probs):
-        self.__disc = disc
+        self._disc = disc
         self.rand_provider = rand_provider
         self.strategy = strategy
         self.strategies_probs = strategies_probs
