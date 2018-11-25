@@ -63,14 +63,17 @@ class GeneticAlgorithm:
     def genetic_controller(self, generations):
         self.population_generator()
         for i in range(generations):
+            print(i)
             self.simulate_matches("R","Y")
             self.simulate_matches("Y","R")
             self.population.sort(key=lambda x: x[1])
-            children = self.cross_controller()
-            self.mutate_controller(children)
-            self.replace(children)
-            
+            if i != generations - 1:
+                children = self.cross_controller()
+                self.mutate_controller(children)
+                self.replace(children)
+        return self.population[-1][0].strategies_probs
 
 
-ga = GeneticAlgorithm(RandomnessProvider(), 10, 2)
-ga.genetic_controller(2)
+ga = GeneticAlgorithm(RandomnessProvider(), 60, 15)
+resultado = ga.genetic_controller(20)
+print(resultado)
