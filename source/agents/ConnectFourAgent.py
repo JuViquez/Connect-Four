@@ -6,7 +6,7 @@ from source.strategies.ConnectFourStrategy import ConnectFourStrategy
 class ConnectFourAgent(GameAgent):
     
     def __init__(self, disc, rand_provider, strategy, strategies_probs):
-        self._disc = disc
+        self.__disc = disc
         self.rand_provider = rand_provider
         self.strategy = strategy
         self.strategies_probs = strategies_probs
@@ -31,7 +31,7 @@ class ConnectFourAgent(GameAgent):
             #return self.strategy.even_column(board, columns, self.disc)
             strategies_keys = ["Secuencia","Espacios","Centros","Extremos","Fila Impar","Fila Par","Columna Impar","Columna Par"]
             selected_str = self.rand_provider.prob_choice(strategies_keys, self.strategies_probs)
-            print("Estrategia seleccionada: " + selected_str)
+            #print("Estrategia seleccionada: " + selected_str)
             strategy_method = self.strategies.get(selected_str)
             return strategy_method(board, columns, self.disc)
         return None
