@@ -13,4 +13,7 @@ class GameAgent(metaclass=ABCMeta):
     @abstractmethod
     def play(self, board, columns):
         pass
-    
+
+    @disc.setter
+    def disc(self, disc):
+        self._disc = disc

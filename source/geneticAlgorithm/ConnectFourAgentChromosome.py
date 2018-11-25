@@ -11,7 +11,7 @@ class ConnectFourAgentChromosome(ConnectFourAgent, Chromosome):
     def mutate(self):
         len_probs = len(self.strategies_probs)
         prob_idx = self.rand_provider.random_int(0, len_probs)
-        mutation = self.rand_provideb.random_number(0, 1)
+        mutation = self.rand_provider.random_number(0, 1)
         self.strategies_probs[prob_idx] = mutation
         self.strategies_probs = self.rand_provider.scale_probs(self.strategies_probs)
         
@@ -19,7 +19,7 @@ class ConnectFourAgentChromosome(ConnectFourAgent, Chromosome):
         len_probs = len(self.strategies_probs)
         split_idx = self.rand_provider.random_int(0, len_probs)
         self_half = self.strategies_probs[0 : split_idx] 
-        chr_half = chromosome[split_idx, len_probs]
+        chr_half = chromosome[split_idx : len_probs]
         new_probs = np.concatenate((self_half, chr_half))
         new_probs = self.rand_provider.scale_probs(new_probs)
         
