@@ -18,4 +18,11 @@ class FakeRandomnessProvider(RandomnessProvider):
     
     def gen_rand_prob_list(self, n_probs):
         return np.full((n_probs), 1/n_probs)
+
+    def scale_probs(self, probs):
+        total_prob = sum(probs)
+        size_probs = len(probs)
+        for i in range(size_probs):
+            probs[i] = probs[i] / total_prob
+        return probs
     
