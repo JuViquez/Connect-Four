@@ -27,11 +27,8 @@ class ConnectFourAgent(GameAgent):
             x = checker.check_win_play(board, columns, enemy)
             if x is not None: #Chequea si se puede bloquear
                 return x
-            #return columns[randint(0, column_length-1)] #aquí es donde se llamarían a las estrategias
-            #return self.strategy.even_column(board, columns, self.disc)
             strategies_keys = ["Secuencia","Espacios","Centros","Extremos","Fila Impar","Fila Par","Columna Impar","Columna Par"]
             selected_str = self.rand_provider.prob_choice(strategies_keys, self.strategies_probs)
-            #print("Estrategia seleccionada: " + selected_str)
             strategy_method = self.strategies.get(selected_str)
             return strategy_method(board, columns, self.disc)
         return None

@@ -5,6 +5,7 @@ from test.FakeRandomnessProvider import FakeRandomnessProvider
 from source.strategies.ConnectFourStrategy import ConnectFourStrategy
 from source.utilities.ConnectFourSearcher import ConnectFourSearcher
 from source.utilities.ConnectFourScore import ConnectFourScore
+from source.utilities.RandomnessProvider import RandomnessProvider
 
 @pytest.fixture
 def c4_strategy():
@@ -53,6 +54,44 @@ def test_sequence_with_tie(c4_strategy):
     expected_column = 5
     valid_columns = list(range(0,7))
     output_column = c4_strategy.sequence(board, valid_columns, "R")
+    
+    assert expected_column == output_column
+
+def test_spaces_without_tie(c4_strategy):
+    board =  np.array(
+            [
+            
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None,  None,  'R',  'R', None, "Y"]
+            
+            ])
+    expected_column = 1
+    c4_strategy.rand_provider = RandomnessProvider()
+    valid_columns = list(range(0,7))
+    output_column = c4_strategy.spaces(board, valid_columns, "R")
+    
+    assert expected_column == output_column
+            
+def test_spaces_with_tie(c4_strategy):
+    board =  np.array(
+            [
+            
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            ["R", None,  None,  "R",  None, None, "R"]
+            
+            ])
+    expected_column = 5
+    c4_strategy.rand_provider.result = 1
+    valid_columns = list(range(0,7))
+    output_column = c4_strategy.spaces(board, valid_columns, "R")
     
     assert expected_column == output_column
 
@@ -285,3 +324,117 @@ def test_even_row_tie(c4_strategy):
     
     assert expected_column == output_column
   
+def test_odd_column(c4_strategy):
+    board =  np.array(
+            [
+            
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, 'R', None, None,  None]
+            
+            ])
+    expected_column = 5
+    valid_columns = list(range(0,7))
+    c4_strategy.rand_provider.result = 1
+    output_column = c4_strategy.odd_column(board, valid_columns, "R")
+    
+    assert expected_column == output_column
+
+def test_odd_column_full(c4_strategy):
+    board =  np.array(
+            [
+            
+            [None, "R", None, "R", None, "R", None],
+            [None, "R", None, "R", None, "R", None],
+            [None, "R", None, "R", None, "R", None],
+            [None, "R", None, "R", None, "R", None],
+            [None, "R", None, "R", None, "R", None],
+            [None, "R", None, "R", None, "R", None]
+            
+            ])
+    expected_column = 2
+    valid_columns = [0,2,4,6]
+    c4_strategy.rand_provider.result = 1
+    output_column = c4_strategy.odd_column(board, valid_columns, "R")
+    
+    assert expected_column == output_column
+
+def test_odd_column_tie(c4_strategy):
+    board =  np.array(
+            [
+            
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, "R", None, "R", None, "R", None],
+            [None, "R", None, "R", None, "R", None],
+            [None, "R", None, "R", None, "R", None]
+            
+            ])
+    expected_column = 3
+    valid_columns = list(range(0,7))
+    c4_strategy.rand_provider.result = 0
+    output_column = c4_strategy.odd_column(board, valid_columns, "R")
+    
+    assert expected_column == output_column
+
+ 
+def test_even_column(c4_strategy):
+    board =  np.array(
+            [
+            
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, "R", None,  None]
+            
+            ])
+    expected_column = 2
+    valid_columns = list(range(0,7))
+    c4_strategy.rand_provider.result = 0
+    output_column = c4_strategy.even_column(board, valid_columns, "R")
+    
+    assert expected_column == output_column
+
+def test_even_column_full(c4_strategy):
+    board =  np.array(
+            [
+            
+            ["R", None, "R", None, "R", None, "R"],
+            ["R", None, "R", None, "R", None, "R"],
+            ["R", None, "R", None, "R", None, "R"],
+            ["R", None, "R", None, "R", None, "R"],
+            ["R", None, "R", None, "R", None, "R"],
+            ["R", None, "R", None, "R", None, "R"]
+            
+            ])
+    expected_column = 3
+    valid_columns = [1,3,5]
+    c4_strategy.rand_provider.result = 1
+    output_column = c4_strategy.even_column(board, valid_columns, "R")
+    
+    assert expected_column == output_column
+
+def test_even_column_tie(c4_strategy):
+    board =  np.array(
+            [
+            
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None],
+            ["R", None, "R", None, "R", None, "R"],
+            ["R", None, "R", None, "R", None, "R"],
+            ["R", None, "R", None, "R", None, "R"]
+            
+            ])
+    expected_column = 4
+    valid_columns = list(range(0,7))
+    c4_strategy.rand_provider.result = 1
+    output_column = c4_strategy.even_column(board, valid_columns, "R")
+    
+    assert expected_column == output_column
