@@ -1,6 +1,16 @@
 [
-  "test/test_ConnectFourSearcher.py::test_search_horizontal",
-  "test/test_ConnectFourSearcher.py::test_search_vertical",
-  "test/test_ConnectFourSearcher.py::test_search_negative_diagonal",
-  "test/test_ConnectFourSearcher.py::test_search_positive_diagonal"
+  "test/test_ConnectFourStrategy.py::test_sequence_without_tie",
+  "test/test_ConnectFourStrategy.py::test_sequence_with_tie",
+  "test/test_ConnectFourStrategy.py::test_center_not_full_centers",
+  "test/test_ConnectFourStrategy.py::test_center_tie_centers",
+  "test/test_ConnectFourStrategy.py::test_center_full_centers",
+  "test/test_ConnectFourStrategy.py::test_end_not_full_ends",
+  "test/test_ConnectFourStrategy.py::test_end_tie_ends",
+  "test/test_ConnectFourStrategy.py::test_end_full_ends",
+  "test/test_ConnectFourStrategy.py::test_odd_row",
+  "test/test_ConnectFourStrategy.py::test_odd_row_full",
+  "test/test_ConnectFourStrategy.py::test_odd_row_tie",
+  "test/test_ConnectFourStrategy.py::test_even_row",
+  "test/test_ConnectFourStrategy.py::test_even_row_full",
+  "test/test_ConnectFourStrategy.py::test_even_row_tie"
 ]

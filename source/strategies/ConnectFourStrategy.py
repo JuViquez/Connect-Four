@@ -41,7 +41,6 @@ class ConnectFourStrategy:
                 best_columns.append(column)
             elif max_score == current_score:
                 best_columns.append(column)       
-        
         best_column = self.rand_provider.prob_choice(best_columns, None)
         return best_column
     
