@@ -24,7 +24,7 @@ def test_search_horizontal(board):
                     ['5-2', '5-3', '5-4', '5-5'],
                     ['5-3', '5-4', '5-5', '5-6'] 
                   ]
-    real_combinations = searcher.search_horizontal(b, 5, 3)
+    real_combinations = searcher.search_horizontal(board, 5, 3)
     assert np.array_equal(combinations, real_combinations)
     
 def test_search_vertical(board): 
@@ -33,7 +33,7 @@ def test_search_vertical(board):
     combinations = [
                     ['2-3', '3-3', '4-3', '5-3']
                    ]
-    real_combinations = searcher.search_vertical(b, 5, 3)
+    real_combinations = searcher.search_vertical(board, 5, 3)
     assert np.array_equal(combinations, real_combinations)
     
 def test_search_negative_diagonal(board):
@@ -42,7 +42,7 @@ def test_search_negative_diagonal(board):
     combinations = [
                     ['2-0', '3-1', '4-2', '5-3']
                    ]
-    real_combinations = searcher.search_negative_diagonal(b, 5, 3)
+    real_combinations = searcher.search_negative_diagonal(board, 5, 3)
     assert np.array_equal(combinations, real_combinations)
 
 def test_search_positive_diagonal(board):
@@ -51,5 +51,5 @@ def test_search_positive_diagonal(board):
     combinations = [
                     ['5-3', '4-4', '3-5', '2-6']
                    ]
-    real_combinations = searcher.search_positive_diagonal(b, 5, 3)
+    real_combinations = searcher.search_positive_diagonal(board, 5, 3)
     assert np.array_equal(combinations, real_combinations)

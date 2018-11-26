@@ -76,6 +76,7 @@ class ConnectFourStrategy:
         best_columns = []
         for center in centers:
             row = self.checker.simulate_play(board, center)
+            board[row][center] = disc
             current_score = self.__calculate_score(board,row,center,disc)
             if max_score < current_score:
                 max_score = current_score
@@ -130,7 +131,7 @@ class ConnectFourStrategy:
                 best_columns.append(odd)
             board[row][odd] = None
         if not odds:
-            best_columns = columns          
+            best_columns = columns      
         best_column = self.rand_provider.prob_choice(best_columns, None)
         return best_column
     
