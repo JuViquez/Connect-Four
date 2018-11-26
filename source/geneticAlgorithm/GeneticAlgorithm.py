@@ -63,6 +63,7 @@ class GeneticAlgorithm:
     def genetic_controller(self, generations):
         self.population_generator()
         for i in range(generations):
+            print("Current generation: " + str(i))
             self.simulate_matches("R","Y")
             self.simulate_matches("Y","R")
             self.population.sort(key=lambda x: x[1])
@@ -71,4 +72,5 @@ class GeneticAlgorithm:
                 self.mutate_controller(children)
                 self.replace(children)
         return self.population[-1][0].strategies_probs
-
+    
+    
