@@ -10,6 +10,18 @@ Git: https://github.com/JuViquez/Connect-Four
 
 - NumPy: pip3 install numpy
 
+## Ejecución
+
+Desde el directorio raíz del proyecto.
+
+**Algoritmo genético**: python main_g.py --pop-size 10 --children 2 --generations 3
+
+**IA vs IA**: python main_c4.py -RedIA -YellowIA
+
+**Humano vs Red IA**: python main_c4.py -RedIA
+
+**Humano vs Yellow IA**: python main_c4.py -YellowIA
+
 ## Introducción
 
 El presente proyecto consta de una evaluación del curso de Inteligencia Artificial del Tecnológico de Costa Rica a cargo del profesor Juan Esquivel. El propósito del mismo es implementar el juego Connect Four y utilizar algoritmos genéticos para crear un agente capaz de jugar. 
