@@ -8,7 +8,7 @@ class ConnectFourScore:
             space_l = -1
             disc_index = cb.index("C")
             if disc_index < 3 and cb[disc_index + 1] is None:
-                space_r += 1 
+                space_r += 1
                 for i in range(disc_index + 1, 4):
                     if cb[i] == value:
                         space_r += 1
@@ -16,8 +16,8 @@ class ConnectFourScore:
                         space_r = -1
                         break
             if disc_index > 0 and cb[disc_index - 1] is None:
-                space_l += 1 
-                for i in reversed(range(0,disc_index - 1)):
+                space_l += 1
+                for i in reversed(range(0, disc_index - 1)):
                     if cb[i] == value:
                         space_l += 1
                     elif cb[i] is not None:
@@ -28,7 +28,7 @@ class ConnectFourScore:
                 max_score += current_score
 
         return max_score
-    
+
     def score_sequence(self, combinations, value):
         score = 0
         for cb in combinations:
@@ -39,22 +39,22 @@ class ConnectFourScore:
                     cb_score += 1
                 elif cb[i] == "C":
                     if i == 0:
-                        if cb[i+1] != value:
+                        if cb[i + 1] != value:
                             cb_score = 0
                             break
-                    elif i == cb_len-1:
-                        if cb[i-1] != value:
+                    elif i == cb_len - 1:
+                        if cb[i - 1] != value:
                             cb_score = 0
                             break
-                    elif cb[i+1] != value and cb[i-1] != value:
+                    elif cb[i + 1] != value and cb[i - 1] != value:
                         cb_score = 0
                         break
-                elif cb[i] != None:
+                elif cb[i] is not None:
                     cb_score = 0
                     break
             score += cb_score
         return score
-    
+
     def score_combinations(self, combinations, value):
         score = 0
         for cb in combinations:
@@ -62,7 +62,7 @@ class ConnectFourScore:
             for slot in cb:
                 if slot == value:
                     cb_score += 1
-                elif slot != None:
+                elif slot is not None:
                     cb_score = 0
                     break
             score += cb_score

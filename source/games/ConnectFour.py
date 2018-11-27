@@ -8,6 +8,7 @@ from source.utilities.ConnectFourScore import ConnectFourScore
 from source.utilities.ConnectFourSearcher import ConnectFourSearcher
 from source.utilities.settings import FIRST_PLAY
 
+
 class ConnectFour():
     def __init__(self, red, yellow):
         self.turn = FIRST_PLAY
@@ -15,18 +16,18 @@ class ConnectFour():
         self.yellow = yellow
         self.board = np.array(
             [[None, None, None, None, None, None, None],
-            [None, None, None, None, None, None, None],
-            [None, None, None, None, None, None, None],
-            [None, None, None, None, None, None, None],
-            [None, None, None, None, None, None, None],
-            [None, None, None, None, None, None, None]])
+             [None, None, None, None, None, None, None],
+             [None, None, None, None, None, None, None],
+             [None, None, None, None, None, None, None],
+             [None, None, None, None, None, None, None],
+             [None, None, None, None, None, None, None]])
 
     def drop_disc(self, column):
-        for i in range(1,7):
-            if self.board[i*-1][column] is None:
-                self.board[i*-1][column] = self.turn
+        for i in range(1, 7):
+            if self.board[i * -1][column] is None:
+                self.board[i * -1][column] = self.turn
                 break
-    
+
     def play_turn(self, checker):
         playable_columns = checker.possible_plays(self.board)
         if len(playable_columns) > 0:
@@ -44,25 +45,26 @@ class ConnectFour():
         winner = ""
         game_over = False
         while(not game_over):
-            if not self.play_turn(checker): #tablero lleno, empate
+            if not self.play_turn(checker):  # tablero lleno, empate
                 if should_print:
                     print("Draw")
                     self.print_board()
                 game_over = True
                 winner = "D"
-            elif checker.check_win(self.board, self.turn): #hay ganador
+            elif checker.check_win(self.board, self.turn):  # hay ganador
                 if should_print:
                     print("Winner winner chicken dinner " + self.turn)
                     self.print_board()
                 game_over = True
                 winner = self.turn
-            else: #cambio de turno
+            else:  # cambio de turno
                 if self.turn == "R":
                     self.turn = "Y"
                 else:
                     self.turn = "R"
                 if should_print:
-                    print("---------------------------------------------------------------")
+                    print(
+                        "---------------------------------------------------------------")
                     self.print_board()
         return winner
 
@@ -76,4 +78,3 @@ class ConnectFour():
                 else:
                     print("|" + self.board[row][column], end='')
             print("|")
-

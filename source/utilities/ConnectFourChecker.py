@@ -1,10 +1,11 @@
 import numpy as np
 
+
 class ConnectFourChecker:
-    
-    def  __init__(self):
+
+    def __init__(self):
         pass
-    
+
     def possible_plays(self, board):
         possible = []
         for i in range(7):
@@ -13,9 +14,9 @@ class ConnectFourChecker:
         return possible
 
     def simulate_play(self, board, column):
-        for i in range(1,7):
-            if board[i*-1][column] is None:
-                return 6-i
+        for i in range(1, 7):
+            if board[i * -1][column] is None:
+                return 6 - i
 
     def check_win_play(self, board, columns, value):
         for i in columns:
@@ -30,20 +31,36 @@ class ConnectFourChecker:
     def check_win(self, board, value):
         for c in range(4):
             for r in range(6):
-                if board[r][c] == value and board[r][c+1] == value and board[r][c+2] == value and board[r][c+3] == value:
+                if board[r][c] == value and board[r][c +
+                                                     1] == value and board[r][c +
+                                                                              2] == value and board[r][c +
+                                                                                                       3] == value:
                     return True
         for c in range(7):
             for r in range(3):
-                if board[r][c] == value and board[r+1][c] == value and board[r+2][c] == value and board[r+3][c] == value:
+                if board[r][c] == value and board[r +
+                                                  1][c] == value and board[r +
+                                                                           2][c] == value and board[r +
+                                                                                                    3][c] == value:
                     return True
         for c in range(4):
             for r in range(3):
-                if board[r][c] == value and board[r+1][c+1] == value and board[r+2][c+2] == value and board[r+3][c+3] == value:
+                if board[r][c] == value and board[r +
+                                                  1][c +
+                                                     1] == value and board[r +
+                                                                           2][c +
+                                                                              2] == value and board[r +
+                                                                                                    3][c +
+                                                                                                       3] == value:
                     return True
         for c in range(4):
             for r in range(3, 6):
-                if board[r][c] == value and board[r-1][c+1] == value and board[r-2][c+2] == value and board[r-3][c+3] == value:
+                if board[r][c] == value and board[r -
+                                                  1][c +
+                                                     1] == value and board[r -
+                                                                           2][c +
+                                                                              2] == value and board[r -
+                                                                                                    3][c +
+                                                                                                       3] == value:
                     return True
         return False
-    
-    
