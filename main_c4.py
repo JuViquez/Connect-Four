@@ -25,9 +25,9 @@ def init_game():
         searcher = ConnectFourSearcher()
         strategy = ConnectFourStrategy(rand, checker, scorer, searcher)
         if args.RedIA:
-            red = ConnectFourAgent("R", rand, strategy, system_settings.STRATEGIES_PROBS)
+            red = ConnectFourAgent("R", rand, strategy, system_settings.R_STRATEGIES_PROBS)
         if args.YellowIA:
-            yellow = ConnectFourAgent("Y", rand, strategy, system_settings.STRATEGIES_PROBS)
+            yellow = ConnectFourAgent("Y", rand, strategy, system_settings.Y_STRATEGIES_PROBS)
     
     c4 = ConnectFour(red, yellow)
     c4.turn_manager(True)
