@@ -27,24 +27,26 @@ def test_drop_disc_empty(controller):
     assert controller.board[-1][0] == "R"
 
 def test_drop_disc_full(controller):
-    controller.board = np.array(
-            [["Y", "Y", "Y", "Y", "Y", "Y", "Y"],
+    controller.board = np.array([
             ["Y", "Y", "Y", "Y", "Y", "Y", "Y"],
             ["Y", "Y", "Y", "Y", "Y", "Y", "Y"],
             ["Y", "Y", "Y", "Y", "Y", "Y", "Y"],
             ["Y", "Y", "Y", "Y", "Y", "Y", "Y"],
-            ["Y", "Y", "Y", "Y", "Y", "Y", "Y"]])
+            ["Y", "Y", "Y", "Y", "Y", "Y", "Y"],
+            ["Y", "Y", "Y", "Y", "Y", "Y", "Y"]
+        ])
     controller.drop_disc(0)
     assert controller.board[0][0] == "Y" 
     
 def test_drop_disc(controller):
-    controller.board = np.array(
-            [[None, None, None, None, None, None, None],
+    controller.board = np.array([
+            [None, None, None, None, None, None, None],
             [None, None, None, None, None, None, None],
             [None, None, None, None, None, None, None],
             [None, None, None, "Y", "Y", None, None],
             [None, None, "R", "Y", "Y", None, "Y"],
-            [None, "R", "Y", "R", "R", "R", "Y"]])
+            [None, "R", "Y", "R", "R", "R", "Y"]
+            ])
     controller.drop_disc(3)
     assert controller.board[2][3] == "R"
 
