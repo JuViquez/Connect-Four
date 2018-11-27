@@ -46,7 +46,41 @@ Se ejecutaron numerosas veces el algoritmo genético con distintas configuracion
 
 - Población: 50, hijos: 15, generaciones: 35, resultado: 2.29603586e-04, 1.19437515e-02, 1.32712678e-02, 3.48560198e-03, 3.15585049e-01, 3.00640005e-03, 2.34902697e-01, 4.17575629e-01
 
+## Estrategias
 
+Se implementaron 8 estrategias las cuales son estrategias que retornan un número de columna válida en el juego, cada estrategia dará prioridad a una columna que cumpla sus condiciones, si existe un empate la estrategia eligirá una opción aleatoria entre el empate, en caso de que ninguna columna cumpla con la condición de una estrategia, se elige una columna válida al azar. A continuación se explicará las estrategias.
+
+### Secuencia
+
+Esta estrategia priorisa las columnas en las cuales se puede formar secuencias.
+
+### Espacios
+
+Esta estrategia da prioridad a la columnas en donde se puedan formar secuencias pero dejando almenos un espacio entre fichas.
+
+### Centros
+
+Esta estrategia priorisa las 3 columnas centrales del tablero
+
+### Extremos
+
+Esta estrategia priorisa las 4 columnas extremas del tablero
+
+### Fila par
+
+La estrategia da prioridad a las columnas que al seleccionarlas, la ficha termine en una casilla de fila par
+
+### Fila impar
+
+La estrategia da prioridad a las columnas que al seleccionarlas, la ficha termine en una casilla de fila impar
+
+### Columna par
+
+Esta estrategias priorisa las columnas pares
+
+### Columna impar
+
+Esta estrategias priorisa las columnas impares
 
 ## Distribución de trabajo:
 
