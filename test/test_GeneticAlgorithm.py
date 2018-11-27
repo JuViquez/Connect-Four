@@ -62,3 +62,7 @@ def test_replace(genetic):
     assert isinstance(genetic.population[0], int)
     assert not isinstance(genetic.population[3], int)
 
+def test_genetic_controller(genetic):
+    genetic.randomness_provider = RandomnessProvider()
+    assert len(genetic.genetic_controller(2)) == 8
+

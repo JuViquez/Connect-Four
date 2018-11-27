@@ -46,6 +46,10 @@ Se ejecutaron numerosas veces el algoritmo genético con distintas configuracion
 
 - Población: 50, hijos: 15, generaciones: 35, resultado: 2.29603586e-04, 1.19437515e-02, 1.32712678e-02, 3.48560198e-03, 3.15585049e-01, 3.00640005e-03, 2.34902697e-01, 4.17575629e-01
 
+- Población: 65, hijos: 20, generaciones: 35, resultado 0.00548696, 0.00773916, 0.0093209,  0.02215657, 0.08894724, 0.00555274, 0.44035399, 0.42044244
+
+Dados estos resultados, las estrategias con mayor peso son Fila Impar, Columna Impar y Columna Par.
+
 
 
 ## Distribución de trabajo:
