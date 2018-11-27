@@ -54,34 +54,45 @@ Se implementaron 8 estrategias las cuales son estrategias que retornan un númer
 
 Esta estrategia priorisa las columnas en las cuales se puede formar secuencias.
 
+![](https://github.com/JuViquez/Connect-Four/blob/master/images/secuencia.png)
 ### Espacios
 
 Esta estrategia da prioridad a la columnas en donde se puedan formar secuencias pero dejando almenos un espacio entre fichas.
+
+![](https://github.com/JuViquez/Connect-Four/blob/master/images/espacio.png)
 
 ### Centros
 
 Esta estrategia priorisa las 3 columnas centrales del tablero
 
+![](https://github.com/JuViquez/Connect-Four/blob/master/images/centros.png)
+
 ### Extremos
 
 Esta estrategia priorisa las 4 columnas extremas del tablero
 
+![](https://github.com/JuViquez/Connect-Four/blob/master/images/extremos.png)
 ### Fila par
 
 La estrategia da prioridad a las columnas que al seleccionarlas, la ficha termine en una casilla de fila par
+
+![](https://github.com/JuViquez/Connect-Four/blob/master/images/filapar.png)
 
 ### Fila impar
 
 La estrategia da prioridad a las columnas que al seleccionarlas, la ficha termine en una casilla de fila impar
 
+![](https://github.com/JuViquez/Connect-Four/blob/master/images/filaimpar.png)
 ### Columna par
 
 Esta estrategias priorisa las columnas pares
 
+![](https://github.com/JuViquez/Connect-Four/blob/master/images/columnapar.png)
 ### Columna impar
 
 Esta estrategias priorisa las columnas impares
 
+![](https://github.com/JuViquez/Connect-Four/blob/master/images/columnaimpar.png)
 ## Distribución de trabajo:
 
 El trabajo de ambos integrantes fue equivalente, por lo tanto se recomienda repartir la nota en partes iguales.
