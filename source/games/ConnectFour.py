@@ -58,14 +58,14 @@ class ConnectFour():
                 game_over = True
                 winner = self.turn
             else:  # cambio de turno
+                if should_print:
+                    self.print_board()
+                    print(
+                        "---------------------------------------------------------------")
                 if self.turn == "R":
                     self.turn = "Y"
                 else:
                     self.turn = "R"
-                if should_print:
-                    print(
-                        "---------------------------------------------------------------")
-                    self.print_board()
         return winner
 
     def print_board(self):

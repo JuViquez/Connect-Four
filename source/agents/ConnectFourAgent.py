@@ -8,6 +8,7 @@ class ConnectFourAgent(GameAgent):
 
     def __init__(self, disc, rand_provider, strategy, strategies_probs):
         self._disc = disc
+        self.should_print = False
         self.rand_provider = rand_provider
         self.strategy = strategy
         self.strategies_probs = strategies_probs
@@ -30,9 +31,13 @@ class ConnectFourAgent(GameAgent):
         if column_length > 0:
             x = checker.check_win_play(board, columns, self.disc)
             if x is not None:  # chequea si se puede ganar
+                if self.should_print:
+                    print("Se escogio una jugada ganadora")
                 return x
             x = checker.check_win_play(board, columns, enemy)
             if x is not None:  # Chequea si se puede bloquear
+                if self.should_print:
+                    print("Se bloqueo una jugada enemiga")
                 return x
             strategies_keys = [
                 "Secuencia",
@@ -46,5 +51,8 @@ class ConnectFourAgent(GameAgent):
             selected_str = self.rand_provider.prob_choice(
                 strategies_keys, self.strategies_probs)
             strategy_method = self.strategies.get(selected_str)
-            return strategy_method(board, columns, self.disc)
+            columna = strategy_method(board, columns, self.disc)
+            if self.should_print:
+                print("Estrategia elegida: " + str(selected_str) + " columna: " + str(columna))
+            return columna
         return None

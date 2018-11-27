@@ -1,3 +1,19 @@
+# Proyecto 2 - Inteligencia Artificial - Connect Four
+
+José Antonio Salas 2015013633
+
+Julio Víquez Murillo 2015013680
+
+Git: https://github.com/JuViquez/Connect-Four
+
+## Dependencias
+
+- NumPy: pip3 install numpy
+
+## Introducción
+
+El presente proyecto consta de una evaluación del curso de Inteligencia Artificial del Tecnológico de Costa Rica a cargo del profesor Juan Esquivel. El propósito del mismo es implementar el juego Connect Four y utilizar algoritmos genéticos para crear un agente capaz de jugar. 
+
 ## Algoritmo genético
 
 Cada agente genera su siguiente jugada dependiendo de un arreglo de posibilidades que controla sus decisiones. El problema radica en que no se conoce la configuración con mejores resultados. Es por ello que se implementó un algoritmo genético que resuelve esta incógnita. 
@@ -22,38 +38,19 @@ El sistema de puntuación consiste en repartir 2 puntos en cada partido efectuad
 
 La probabilidad de escoger un agente es directamente proporcional  a la puntuación que obtuevieron, por lo tanto, se espera que los agentes con mayor puntuación sean escogidos más veces para reproducirse. Cuando se escogen dos agentes distintos, se escoge un punto de quiebre de forma aleatoria en el arreglo de probabilidades y se crea un nuevo agente con la unión de las partes de cada progenitor. Se reajustan los valores de porcentajes para que la suma de ellos siempre de 1.
 
-
+![cross.png](https://github.com/JuViquez/Connect-Four/blob/master/images/cross.png?raw=true)
 
 ### Mutación
 
 Todos los hijos de cada generación se redirigen a un proceso de mutación. La mutación consiste en cambiar de forma aleatoria un gen de los hijos. La probabilidad de mutación se encuentra en torno al 10% ó 15% dependiendo de la configuración del programa. Si un hijo entra a mutar, se ecoge un gen aleatorio  de su arreglo, se le otorga un nuevo valor aleatorio del uno al cero incluidos, y se ajustan de nueva cuenta todos los pesos para que sumados de 1.
 
-
+![mutate.png](https://github.com/JuViquez/Connect-Four/blob/master/images/mutate.png?raw=true)
 
 ### Reemplazo
 
 Tal y como se comentó antes, el arreglo es ordenado de forma ascendente. Los hijos son insertados a este arreglo en las primeras posiciones, sustituyendo a los agentes con peor rendimiento y siendo participes de la siguiente generación del algoritmo.
 
-
-
-## Resultados
-
-Se ejecutaron numerosas veces el algoritmo genético con distintas configuraciones de número de generaciones, tamaño de población y cantidad de hijos. Se obtuvieron los siguientes resultados ("Secuencia", "Espacios", "Centros", "Extremos", "Fila Impar", "Fila Par", "Columna Impar", "Columna Par"):
-
-- Población: 60, hijos: 15, generaciones: 20, resultado: 0.00247947, 0.00054656, 0.01820531, 0.25123566, 0.48210063, 0.01736479, 0.02902593, 0.19904165
-
-- Población: 50, hijos: 15, generaciones: 25, resultado: 3.48722626e-04, 5.33369811e-03, 4.40077406e-02, 4.05673066e-02, 5.93002717e-01, 1.79300240e-01, 2.90529597e-02, 1.08386616e-01
-
-- Población: 50, hijos: 15, generaciones: 35, resultado: 2.29603586e-04, 1.19437515e-02, 1.32712678e-02, 3.48560198e-03, 3.15585049e-01, 3.00640005e-03, 2.34902697e-01, 4.17575629e-01
-
-<<<<<<< HEAD
-- Población: 65, hijos: 20, generaciones: 35, resultado 0.00548696, 0.00773916, 0.0093209,  0.02215657, 0.08894724, 0.00555274, 0.44035399, 0.42044244
-
-Dados estos resultados, las estrategias con mayor peso son Fila Impar, Columna Impar y Columna Par.
-
-=======
 ## Estrategias
->>>>>>> 85a43cf83aede97d91c745f92349d87df874c8e5
 
 Se implementaron 8 estrategias las cuales son estrategias que retornan un número de columna válida en el juego, cada estrategia dará prioridad a una columna que cumpla sus condiciones, si existe un empate la estrategia eligirá una opción aleatoria entre el empate, en caso de que ninguna columna cumpla con la condición de una estrategia, se elige una columna válida al azar. A continuación se explicará las estrategias.
 
@@ -62,6 +59,7 @@ Se implementaron 8 estrategias las cuales son estrategias que retornan un númer
 Esta estrategia priorisa las columnas en las cuales se puede formar secuencias.
 
 ![](https://github.com/JuViquez/Connect-Four/blob/master/images/secuencia.png)
+
 ### Espacios
 
 Esta estrategia da prioridad a la columnas en donde se puedan formar secuencias pero dejando almenos un espacio entre fichas.
@@ -79,6 +77,7 @@ Esta estrategia priorisa las 3 columnas centrales del tablero
 Esta estrategia priorisa las 4 columnas extremas del tablero
 
 ![](https://github.com/JuViquez/Connect-Four/blob/master/images/extremos.png)
+
 ### Fila par
 
 La estrategia da prioridad a las columnas que al seleccionarlas, la ficha termine en una casilla de fila par
@@ -90,16 +89,37 @@ La estrategia da prioridad a las columnas que al seleccionarlas, la ficha termin
 La estrategia da prioridad a las columnas que al seleccionarlas, la ficha termine en una casilla de fila impar
 
 ![](https://github.com/JuViquez/Connect-Four/blob/master/images/filaimpar.png)
+
 ### Columna par
 
 Esta estrategias priorisa las columnas pares
 
 ![](https://github.com/JuViquez/Connect-Four/blob/master/images/columnapar.png)
+
 ### Columna impar
 
 Esta estrategias priorisa las columnas impares
 
 ![](https://github.com/JuViquez/Connect-Four/blob/master/images/columnaimpar.png)
+
+## Resultados
+
+Se ejecutaron numerosas veces el algoritmo genético con distintas configuraciones de número de generaciones, tamaño de población y cantidad de hijos. Se obtuvieron los siguientes resultados ("Secuencia", "Espacios", "Centros", "Extremos", "Fila Impar", "Fila Par", "Columna Impar", "Columna Par"):
+
+- Población: 60, hijos: 15, generaciones: 20, resultado: 0.00247947, 0.00054656, 0.01820531, 0.25123566, 0.48210063, 0.01736479, 0.02902593, 0.19904165
+
+- Población: 50, hijos: 15, generaciones: 25, resultado: 3.48722626e-04, 5.33369811e-03, 4.40077406e-02, 4.05673066e-02, 5.93002717e-01, 1.79300240e-01, 2.90529597e-02, 1.08386616e-01
+
+- Población: 50, hijos: 15, generaciones: 35, resultado: 2.29603586e-04, 1.19437515e-02, 1.32712678e-02, 3.48560198e-03, 3.15585049e-01, 3.00640005e-03, 2.34902697e-01, 4.17575629e-01
+
+- Población: 65, hijos: 20, generaciones: 35, resultado 0.00548696, 0.00773916, 0.0093209, 0.02215657, 0.08894724, 0.00555274, 0.44035399, 0.42044244
+
+Dados estos resultados, las estrategias con mayor peso son Fila Impar, Columna Impar y Columna Par.
+
+## Cobertura de pruebas
+
+![pytest-cover.PNG](https://github.com/JuViquez/Connect-Four/blob/master/images/pytest-cover.PNG?raw=true)
+
 ## Distribución de trabajo:
 
 El trabajo de ambos integrantes fue equivalente, por lo tanto se recomienda repartir la nota en partes iguales.
@@ -113,8 +133,6 @@ El trabajo de ambos integrantes fue equivalente, por lo tanto se recomienda repa
 - Implementación del random provider.
 
 - Implementación de las estrategias Secuenciales, Centros, Extremos, Columna par.
-
-
 
 **José Antonio Salas 2015013633:**
 
