@@ -1,16 +1,7 @@
 [
-  "test/test_ConnectFourStrategy.py::test_sequence_without_tie",
-  "test/test_ConnectFourStrategy.py::test_sequence_with_tie",
-  "test/test_ConnectFourStrategy.py::test_center_not_full_centers",
-  "test/test_ConnectFourStrategy.py::test_center_tie_centers",
-  "test/test_ConnectFourStrategy.py::test_center_full_centers",
-  "test/test_ConnectFourStrategy.py::test_end_not_full_ends",
-  "test/test_ConnectFourStrategy.py::test_end_tie_ends",
-  "test/test_ConnectFourStrategy.py::test_end_full_ends",
-  "test/test_ConnectFourStrategy.py::test_odd_row",
-  "test/test_ConnectFourStrategy.py::test_odd_row_full",
-  "test/test_ConnectFourStrategy.py::test_odd_row_tie",
-  "test/test_ConnectFourStrategy.py::test_even_row",
-  "test/test_ConnectFourStrategy.py::test_even_row_full",
-  "test/test_ConnectFourStrategy.py::test_even_row_tie"
+  "test/test_RandomnessProvider.py::test_random_int",
+  "test/test_RandomnessProvider.py::test_random_number",
+  "test/test_RandomnessProvider.py::test_prob_choice",
+  "test/test_RandomnessProvider.py::test_gen_rand_prob_list",
+  "test/test_RandomnessProvider.py::test_scale_probs"
 ]
